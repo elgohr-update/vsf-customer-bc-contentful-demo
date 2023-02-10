@@ -15,6 +15,7 @@ const ssrMiddlewareUrl =
     : "http://localhost:8181/";
 
 export default {
+  components: ['~/components/cms/page/', '~/components/cms/layout/'],
   server: {
     port: 3000,
     host: "0.0.0.0",
