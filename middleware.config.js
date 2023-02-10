@@ -30,5 +30,12 @@ module.exports = {
         secureCookies: process.env.NODE_ENV === "production",
       },
     },
+    'cntf': {
+      location: '@vsf-enterprise/contentful/server',
+      configuration: {
+        token: "Ra6JHzpnzxATMpG4XihuCun7p9ehOuWg7rSCjgMn-38",
+        space: "lilfby04ns0d"
+      },
+    }
   },
 };

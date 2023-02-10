@@ -73,12 +73,13 @@ export default {
     "@nuxt/typescript-build",
     "@nuxtjs/pwa",
     "@nuxtjs/style-resources",
+    '@vsf-enterprise/contentful/nuxt',
     [
       "@vue-storefront/nuxt",
       {
         useRawSource: {
-          dev: ["@vue-storefront/core"],
-          prod: ["@vue-storefront/core"],
+          dev: ["@vue-storefront/core", '@vsf-enterprise/contentful'],
+          prod: ["@vue-storefront/core", '@vsf-enterprise/contentful'],
         },
       },
     ],
