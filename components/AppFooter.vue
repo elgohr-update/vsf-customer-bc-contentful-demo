@@ -1,91 +1,45 @@
 <template>
   <SfFooter :column="4" multiple class="footer">
-    <SfFooterColumn :title="$t('About us')">
+    <SfFooterColumn
+      v-for="(column, i) of footer.items"
+      :key="i"
+      :title="column.heading"
+    >
       <SfList>
-        <SfListItem v-for="item in aboutUs" :key="item">
-          <SfMenuItem :label="$t(item)" />
+        <SfListItem v-for="(item, ii) in column.items" :key="ii">
+          <SfMenuItem :label="item.caption" :link="item.link" />
         </SfListItem>
       </SfList>
-    </SfFooterColumn>
-    <SfFooterColumn :title="$t('Departments')">
-      <SfList>
-        <SfListItem v-for="item in departments" :key="item">
-          <SfMenuItem :label="$t(item)" />
-        </SfListItem>
-      </SfList>
-    </SfFooterColumn>
-    <SfFooterColumn :title="$t('Help')">
-      <SfList>
-        <SfListItem v-for="item in help" :key="item">
-          <SfMenuItem :label="$t(item)" />
-        </SfListItem>
-      </SfList>
-    </SfFooterColumn>
-    <SfFooterColumn :title="$t('Payment & Delivery')">
-      <SfList>
-        <SfListItem v-for="item in paymentsDelivery" :key="item">
-          <SfMenuItem :label="$t(item)" />
-        </SfListItem>
-      </SfList>
-    </SfFooterColumn>
-    <SfFooterColumn title="Social">
-      <div class="footer__socials">
-        <SfImage
-          class="footer__social-image"
-          v-for="item in social"
-          :key="item"
-          :src="`/icons/${item}.svg`"
-          :alt="item"
-          :width="32"
-          :height="32"
-        />
-      </div>
     </SfFooterColumn>
   </SfFooter>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api';
-import { SfFooter, SfList, SfImage, SfMenuItem } from '@storefront-ui/vue';
+import { SfFooter, SfList, SfMenuItem } from '@storefront-ui/vue'
+import useCmsLayout from '../composables/useCmsLayout'
 
-export default defineComponent({
+export default {
+  name: 'Footer',
   components: {
     SfFooter,
     SfList,
-    SfImage,
-    SfMenuItem
+    SfMenuItem,
   },
-  data() {
+  setup() {
+    const { footer } = useCmsLayout()
+
     return {
-      aboutUs: ['Who we are', 'Quality in the details', 'Customer Reviews'],
-      departments: ['Household items', 'Utility'],
-      help: ['Customer service', 'Contact us'],
-      paymentsDelivery: ['Purchase terms', 'Guarantee'],
-      social: ['facebook', 'pinterest', 'twitter', 'youtube']
-    };
-  }
-});
+      footer,
+    }
+  },
+}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .footer {
   margin-bottom: 3.75rem;
   @include for-desktop {
     margin-bottom: 0;
-  }
-  &__socials {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto var(--spacer-lg);
-    padding: var(--spacer-base) var(--spacer-xl);
-    @include for-desktop {
-      justify-content: flex-start;
-      padding: var(--spacer-xs) 0;
-      margin: 0 auto;
-    }
-  }
-  &__social-image {
-    margin: 0 var(--spacer-2xs) 0 0;
   }
 }
 .sf-footer {

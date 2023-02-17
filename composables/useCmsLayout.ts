@@ -8,19 +8,19 @@ const useCmsLayout = () => {
 
   const getLayout = () =>
     Promise.all([
-      // searchStyleGuide({
-      //   custom: {
-      //     type: 'styleGuide',
-      //     field: 'title',
-      //     value: 'Page Style Guide',
-      //   },
-      // }),
+      searchStyleGuide({
+        custom: {
+          type: 'styleGuide',
+          field: 'title',
+          value: 'Page Style Guide',
+        },
+      }),
 
       searchLayout({
         custom: {
           type: "layout",
           field: "title",
-          value: "cms-layout",
+          value: "layout",
         },
       }),
     ]);
